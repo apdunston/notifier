@@ -4,22 +4,10 @@ defmodule Notifier.ApplescriptPlugin do
   """
   @behaviour Notifier.Plugin
 
-  def notify(title, message) do
-    notify(:no_sound, title, message, nil)
-  end
-
-  def notify(:sound, title, message, sound) do
-    {title, message}
-    |> make_applescript
-    |> add_sound(sound)
-    |> run_applescript
-  end
-
-  def notify(:no_sound, title, message, _sound) do
-    {title, message}
-    |> make_applescript
-    |> run_applescript
-  end
+  def notify(%{sound: sound, title: title, message: message}), do:
+    {title, message} |> make_applescript |> add_sound(sound) |> run_applescript
+  def notify(%{title: title, message: message}), do:
+    {title, message} |> make_applescript |> run_applescript
 
   defp make_applescript({title, message}),
     do: "display notification \"#{message}\" with title \"#{title}\""
