@@ -1,4 +1,12 @@
 defmodule Notifier.Plugin do
-  @callback notify(%{title: String.t, message: String.t}) :: any
-  @callback notify(%{title: String.t, message: String.t, sound: String.t}) :: any
+  @moduledoc "Defines behavior for Notifier plugins"
+
+  @callback notify(%{
+      title: String.t,
+      message: String.t,
+      sound: String.t,
+      icon: String.t
+  }) :: any
+
+  @callback available?() :: any
 end
