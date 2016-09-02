@@ -4,10 +4,12 @@ defmodule Notifier.Mixfile do
   def project do
     [app: :notifier,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps]
+     deps: deps,
+     package: package,
+     description: description]
   end
 
   # Configuration for the OTP application
@@ -27,6 +29,22 @@ defmodule Notifier.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [{:dogma, "~> 0.1", only: :dev}]
+    [{:dogma, "~> 0.1", only: :dev},
+      {:ex_doc, ">= 0.0.0", only: :dev}]
   end
+
+  defp description do
+    """
+    OSX notifications in a pluggable architecture for other kinds of notifications.
+    """
+  end
+
+  defp package do
+    [
+      name: :notifier,
+      maintainers: ["Adrian Dunston"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/apdunston/notifier"}]
+  end
+
 end

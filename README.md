@@ -3,8 +3,9 @@ Notifier
 
 OSX notifications in a pluggable architecture for other kinds of notifications.
 
-Borrowed heavily from the fabulous [navinpeiris/ex_unit_notifier](https://github.com/navinpeiris/ex_unit_notifier)! Thanks, Navin.
-You're awesome.
+Borrows heavily from the fabulous [navinpeiris/ex_unit_notifier](https://github.com/navinpeiris/ex_unit_notifier)! Thanks, Navin. You're awesome.
+
+![demo](https://cloud.githubusercontent.com/assets/1875157/18220797/a8d200b0-7143-11e6-81f6-f8b65bc7604a.gif)
 
 # Usage
 
@@ -58,6 +59,8 @@ Notifier.notify("MY TITLE", "This is my message.")
 ```
 
 ## Selecting a Plugin
+
+You may optionally specify which plugin Notifier uses.
 
 ```elixir
 config.exs
