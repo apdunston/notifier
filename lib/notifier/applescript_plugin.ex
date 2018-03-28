@@ -12,7 +12,7 @@ defmodule Notifier.ApplescriptPlugin do
     :ok
   end
 
-  def available?, do: executable != nil
+  def available?, do: executable() != nil
   defp executable, do: System.find_executable "osascript"
 
 

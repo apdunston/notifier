@@ -3,13 +3,13 @@ defmodule Notifier.Mixfile do
 
   def project do
     [app: :notifier,
-     version: "0.0.1",
+     version: "0.1.0",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps,
-     package: package,
-     description: description]
+     deps: deps(),
+     package: package(),
+     description: description()]
   end
 
   # Configuration for the OTP application
@@ -29,8 +29,11 @@ defmodule Notifier.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [{:dogma, "~> 0.1", only: :dev},
-      {:ex_doc, ">= 0.0.0", only: :dev}]
+    [
+      {:dogma, "~> 0.1", only: :dev},
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}
+    ]
   end
 
   defp description do

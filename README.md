@@ -7,6 +7,12 @@ Borrows heavily from the fabulous [navinpeiris/ex_unit_notifier](https://github.
 
 ![demo](https://cloud.githubusercontent.com/assets/1875157/18220797/a8d200b0-7143-11e6-81f6-f8b65bc7604a.gif)
 
+# Requirements
+
+For icon support, you must install [terminal-notifier](https://github.com/julienXX/terminal-notifier)
+
+`> brew install terminal-notifier`
+
 # Usage
 
 Add it to your dependencies
@@ -19,10 +25,14 @@ end
 ```
 
 ```bash
-mix deps.get
+> mix deps.get
 ```
 
 ```elixir
+Notifier.notify("This is my message.")
+
+Notifier.notify("MY TITLE", "This is my message.")
+
 # All the options, local image
 Notifier.notify(%{
   title: "MY TITLE", 
@@ -50,12 +60,6 @@ Notifier.notify(%{
 Notifier.notify(%{title: "MY TITLE", message: "This is my message."})
 Notifier.notify(%{title: "MY TITLE"})
 Notifier.notify(%{message: "This is my message."})
-
-# Simple message-only call.
-Notifier.notify("This is my message.")
-
-# Simple title-and-message call.
-Notifier.notify("MY TITLE", "This is my message.")
 ```
 
 ## Selecting a Plugin

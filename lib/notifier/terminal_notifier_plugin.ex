@@ -6,11 +6,11 @@ defmodule Notifier.TerminalNotifierPlugin do
   @behaviour Notifier.Plugin
 
   def notify(map = %{title: _, message: _, sound: _, icon: _}) do
-    System.cmd(executable, options(map))
+    System.cmd(executable(), options(map))
     :ok
   end
 
-  def available?, do: executable != nil
+  def available?, do: executable() != nil
 
   defp executable, do: System.find_executable "terminal-notifier"
 

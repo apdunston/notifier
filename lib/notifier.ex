@@ -9,7 +9,7 @@ defmodule Notifier do
 
     Icon can be a path to an image file or a URL depending on your plugin.
   """
-  @plugin Application.get_env(:notifier, :plugin)
+  @default_args %{title: "", sound: "", message: "", icon: ""}
 
   @plugins [
     Notifier.TerminalNotifierPlugin,
@@ -18,15 +18,13 @@ defmodule Notifier do
   ]
 
   def notify(map = %{sound: _, title: _, message: _, icon: _}),
-    do: plugin.notify(map)
-  def notify(map = %{}), do: default_args |> Map.merge(map) |> (plugin.notify)
+    do: plugin().notify(map)
+  def notify(map = %{}), do: @default_args |> Map.merge(map) |> (plugin().notify)
   def notify(message), do: notify(%{message: message})
   def notify(title, message), do: notify(%{title: title, message: message})
 
-  defp default_args, do: %{title: "", sound: "", message: "", icon: ""}
-
   defp plugin,
-    do: Application.get_env(:notifier, :plugin, first_available_plugin)
+    do: Application.get_env(:notifier, :plugin, first_available_plugin())
 
   defp first_available_plugin,
     do: @plugins |> Enum.find(fn plugin -> plugin.available? end)
